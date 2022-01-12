@@ -1,0 +1,15 @@
+### List all members
+GET http://localhost:3000/members
+
+
+### Create a new member
+POST http://localhost:3000/members
+content-type: application/json
+
+{
+  "name": "Wayne"
+}
+
+
+### Get a particular member
+GET http://localhost:3000/members/0001
