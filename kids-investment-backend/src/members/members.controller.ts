@@ -1,22 +1,31 @@
-import { Controller, Get, Post, Body, Param } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, NotFoundException } from '@nestjs/common';
 import { CreateMemberDto } from './dtos/create-member.dto'
+import { MembersService } from './members.service';
+
 
 @Controller('members')
 export class MembersController {
+  constructor(public membersService: MembersService){ }
     
   @Get()
   listMembers() {
-
+    return this.membersService.findAll();
   }
 
   @Post()
   createMembers(@Body() body: CreateMemberDto) {
-    console.log(body);
+    return this.membersService.create(body.name);
   }
 
   @Get('/:id')
-  getMembers(@Param('id') id: string) {
-    console.log(id);
+  async getMembers(@Param('id') id: string) {
+    const member = await this.membersService.findOne(id);
+
+    if (!member) {
+      throw new NotFoundException('Member not found');
+    }
+
+    return member;
   }
 
   
