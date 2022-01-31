@@ -1,9 +1,10 @@
-import { Controller, Get } from '@nestjs/common';
+import { CacheInterceptor, Controller, Get, UseInterceptors } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { YoutubeService } from './youtube.service';
 
 @ApiTags('socials')
 @Controller('youtube')
+@UseInterceptors(CacheInterceptor)
 export class YoutubeController {
 constructor(private youtubeService: YoutubeService) {}
 
