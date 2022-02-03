@@ -1,6 +1,7 @@
-import { CacheModule, Module } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { MembersModule } from './members/members.module';
 import { YoutubeModule } from './youtube/youtube.module';
+import { SocialsModule } from './socials/socials.module';
 import { ConfigModule } from '@nestjs/config';
 
 @Module({
@@ -8,6 +9,7 @@ import { ConfigModule } from '@nestjs/config';
     ConfigModule.forRoot(),
     MembersModule,
     YoutubeModule,
+    SocialsModule,
   ],
   controllers: [],
 })

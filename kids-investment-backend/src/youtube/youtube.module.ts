@@ -7,5 +7,6 @@ import { ConfigModule } from '@nestjs/config';
   imports: [CacheModule.register({ ttl: 60 * 60 }), ConfigModule],
   controllers: [YoutubeController],
   providers: [YoutubeService],
+  exports: [YoutubeService],
 })
 export class YoutubeModule {}
