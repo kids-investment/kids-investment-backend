@@ -3,7 +3,6 @@ import { readFile, writeFile } from 'fs/promises';
 
 @Injectable()
 export class MembersRepository {
-
   async findOne(id: string) {
     const contents = await readFile('members.json', 'utf8');
     const members = JSON.parse(contents);
@@ -14,9 +13,8 @@ export class MembersRepository {
   async findAll() {
     const contents = await readFile('members.json', 'utf8');
     const members = JSON.parse(contents);
-  
-    return members;
 
+    return members;
   }
 
   async create(name: string) {
@@ -28,11 +26,9 @@ export class MembersRepository {
     //{
     //  1: { id: 1, name: "Wayne"}
     //}
-   
-    members[id] = {id, name};
 
-    await writeFile('members.json', JSON.stringify(members)) 
+    members[id] = { id, name };
+
+    await writeFile('members.json', JSON.stringify(members));
   }
-  
-
 }
