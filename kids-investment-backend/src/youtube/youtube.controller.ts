@@ -1,4 +1,9 @@
-import { CacheInterceptor, Controller, Get, UseInterceptors } from '@nestjs/common';
+import {
+  CacheInterceptor,
+  Controller,
+  Get,
+  UseInterceptors,
+} from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { YoutubeService } from './youtube.service';
 
@@ -6,10 +11,15 @@ import { YoutubeService } from './youtube.service';
 @Controller('youtube')
 @UseInterceptors(CacheInterceptor)
 export class YoutubeController {
-constructor(private youtubeService: YoutubeService) {}
+  constructor(private youtubeService: YoutubeService) {}
 
   @Get('/latest')
   getLatestVideo() {
     return this.youtubeService.getLatestVideo();
+  }
+
+  @Get('/subscriber/count')
+  getSubscriberCount() {
+    return this.youtubeService.getSubscriberCount();
   }
 }

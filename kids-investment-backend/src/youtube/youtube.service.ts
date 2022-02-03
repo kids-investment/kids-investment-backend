@@ -6,15 +6,17 @@ var { google } = require('googleapis');
 export class YoutubeService {
   constructor(private configService: ConfigService) {}
 
-  getSubscriberCount() {
+  async getSubscriberCount() {
     const response = google
       .youtube({
         version: 'v3',
         auth: this.configService.get('YOUTUBE_AUTH_KEY'),
       })
       .channels.list({ part: 'statistics', id: 'UCp2CPYdnlEHvcJpLGjB7qgw' });
-    const count = response.then((r) => r.data.items[0].subscriberCount);
-    return count;
+    const count = await response.then(
+      (r) => r.data.items[0].statistics.subscriberCount,
+    );
+    return parseInt(count);
   }
   getLatestVideo() {
     const response = google
