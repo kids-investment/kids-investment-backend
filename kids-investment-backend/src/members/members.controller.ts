@@ -1,18 +1,12 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Param,
-  NotFoundException,
-} from '@nestjs/common';
-import { CreateMemberDto } from './dtos/create-member.dto';
+import { Controller, Get, Post, Body, Param, NotFoundException } from '@nestjs/common';
+import { CreateMemberDto } from './dtos/create-member.dto'
 import { MembersService } from './members.service';
+
 
 @Controller('members')
 export class MembersController {
-  constructor(public membersService: MembersService) {}
-
+  constructor(public membersService: MembersService){ }
+    
   @Get()
   listMembers() {
     return this.membersService.findAll();
@@ -33,4 +27,6 @@ export class MembersController {
 
     return member;
   }
+
+  
 }
