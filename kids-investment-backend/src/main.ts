@@ -5,7 +5,9 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.useGlobalPipes(new ValidationPipe());
+  app.useGlobalPipes(new ValidationPipe({
+    whitelist: true  //used to filter out unrelated input fields that are not defined in the DTOs
+  }));
   const config = new DocumentBuilder()
     .setTitle('Kids Investment Backend Server')
     .setDescription('Backend Server written using NestJS and Typescript to support simple CRUD APIs')

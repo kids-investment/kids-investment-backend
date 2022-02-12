@@ -1,21 +1,24 @@
 import { Injectable } from '@nestjs/common';
-import { MembersRepository } from './members.repository';
+//import { MembersRepository } from './members.repository';
+import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Member } from './member.entity';
 
 @Injectable()
 export class MembersService {
-  constructor(public membersRepo: MembersRepository) {
-    //public means that it is a property of the class
+  constructor(@InjectRepository(Member) private repo: Repository<Member>) {}
+
+
+  findOne(id: number) {
+    return this.repo.findOne(id);
   }
 
-  findOne(id: string) {
-    return this.membersRepo.findOne(id);
-  }
+  // findAll() {
+  //   return this.repo.findAll();
+  // }
 
-  findAll() {
-    return this.membersRepo.findAll();
-  }
-
-  create(name: string) {
-    return this.membersRepo.create(name);
+  create(email: string, password: string) {
+    const member = this.repo.create({ email, password });
+    return this.repo.save(member);
   }
 }
