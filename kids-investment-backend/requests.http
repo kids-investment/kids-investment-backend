@@ -3,13 +3,14 @@ GET http://localhost:3000/members
 
 
 ### Create a new member
-POST http://localhost:3000/members
+POST http://localhost:3000/members/signup
 content-type: application/json
 
 {
-  "name": "Wayne"
+  "email": "asdf1@asdf.com",
+  "password": "asdf1"
 }
 
 
 ### Get a particular member
-GET http://localhost:3000/members/0001
+GET http://localhost:3000/members/2

@@ -1,6 +1,9 @@
-import { IsString } from 'class-validator';
+import {IsEmail, IsString} from 'class-validator';
 
 export class CreateMemberDto {
+  @IsEmail()
+  email: string;
+
   @IsString()
-  name: string;
+  password: string;
 }
