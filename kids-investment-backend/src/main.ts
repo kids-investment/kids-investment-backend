@@ -7,8 +7,8 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.useGlobalPipes(new ValidationPipe());
   const config = new DocumentBuilder()
-    .setTitle('Members example')
-    .setDescription('The members API description')
+    .setTitle('Kids Investment Backend Server')
+    .setDescription('Backend Server written using NestJS and Typescript to support simple CRUD APIs')
     .setVersion('1.0')
     .addTag('members')
     .build();
