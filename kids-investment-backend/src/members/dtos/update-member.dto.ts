@@ -1,8 +1,15 @@
-import {IsEmail, IsString} from 'class-validator';
+import {IsEmail, IsNumber, IsString} from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 
-export class CreateMemberDto {
+export class UpdateMemberDto {
+  @ApiProperty({
+    type: Number,
+    description: "Database generated ID"
+  })
+  @IsNumber()
+  id: number;
+
   @ApiProperty({
     type: String,
     description: "Valid string in Email format"
