@@ -1,16 +1,31 @@
-### List all members
-GET http://localhost:3000/members
-
-
-### Create a new member
+### Sign up a new member using their email address
 POST http://localhost:3000/members/signup
 content-type: application/json
 
 {
-  "email": "asdf1@asdf.com",
-  "password": "asdf1"
+  "email": "test@gmail.com",
+  "password": "abcd1234"
 }
 
 
-### Get a particular member
-GET http://localhost:3000/members/2
+### Find a member by using their DB generated ID
+GET http://localhost:3000/members/1
+
+
+### Find an existing member by using their email address
+GET http://localhost:3000/members?email=test%40gmail.com
+
+
+### Update the password of an existing member
+PATCH http://localhost:3000/members/1
+content-type: application/json
+
+{
+  "id": 1,
+  "email": "test@gmail.com",
+  "password": "1234abcd"
+}
+
+
+### Delete an existing member by using their DB generated ID
+DELETE http://localhost:3000/members/1

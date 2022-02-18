@@ -88,7 +88,7 @@ export class MembersController {
  
 
   //UPDATE
-  @ApiOperation({ summary: 'Update password of an existing member' })
+  @ApiOperation({ summary: 'Update the password of an existing member' })
   @ApiResponse({ status: 200, description: 'Found member data', type: UpdateMemberResDto})
   @ApiResponse({ status: 404, description: 'Member not found'})
   @Patch('/:id')
