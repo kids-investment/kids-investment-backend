@@ -13,25 +13,6 @@ import { Member } from './members/member.entity';
       envFilePath: `.env.${process.env.NODE_ENV}`
     }),
     TypeOrmModule.forRoot(),
-    // TypeOrmModule.forRoot({
-    //   type: 'postgres',
-    //   port: parseInt(<string>'5432'),
-    //   username: 'postgres',
-    //   password: 'postgres',
-    //   database: 'kids_investment',
-    //   entities: [Member],
-    //   synchronize: true, //In PRODCUTION this should be false
-    //                      //to prevent overwriting the DB structure
-  
-    // }), 
-    // TypeOrmModule.forRoot({
-    //   type: 'sqlite',
-    //   database: 'db.sqlite',
-    //   entities: [Member],
-    //   synchronize: true, //In PRODCUTION this should be false
-    //                      //to prevent overwriting the DB structure
-  
-    // }), 
     MembersModule,
     YoutubeModule,
     SocialsModule,
