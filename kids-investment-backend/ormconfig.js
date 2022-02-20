@@ -31,7 +31,7 @@ switch (process.env.NODE_ENV) {
       password: 'postgres',
       database: 'kids_investment',
       entities: ['**/*.entity.js'],
-      synchronize: true
+      synchronize: false //DO NOT SET TO TRUE IN PRODUCTION DB!
     });
     break;
   default:  
