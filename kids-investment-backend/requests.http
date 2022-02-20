@@ -1,4 +1,4 @@
-### Sign up a new member using their email address
+### Test 1: Sign up a new member using their email address
 POST http://localhost:3000/members/signup
 content-type: application/json
 
@@ -8,15 +8,25 @@ content-type: application/json
 }
 
 
-### Find a member by using their DB generated ID
+### Test 2: Sign in a member using their email address and password
+POST http://localhost:3000/members/signin
+content-type: application/json
+
+{
+  "email": "test@gmail.com",
+  "password": "abcd1234"
+}
+
+
+### Test 3: Find a member by using their DB generated ID
 GET http://localhost:3000/members/1
 
 
-### Find an existing member by using their email address
+### Test 4: Find an existing member by using their email address
 GET http://localhost:3000/members?email=test%40gmail.com
 
 
-### Update the password of an existing member
+### Test 5: Update the password of an existing member
 PATCH http://localhost:3000/members/1
 content-type: application/json
 
@@ -26,6 +36,24 @@ content-type: application/json
   "password": "1234abcd"
 }
 
+### Test 6: Test the password of an existing member using their old (wrong) password
+POST http://localhost:3000/members/signin
+content-type: application/json
 
-### Delete an existing member by using their DB generated ID
-DELETE http://localhost:3000/members/1
+{
+  "email": "test@gmail.com",
+  "password": "abcd1234"
+}
+
+
+### Test 7: Sign up another member who will then be deleted
+POST http://localhost:3000/members/signup
+content-type: application/json
+
+{
+  "email": "test2@gmail.com",
+  "password": "abcd1234"
+}
+
+### Test 8: Delete an existing member by using their DB generated ID
+DELETE http://localhost:3000/members/2
