@@ -1,11 +1,3 @@
-var dbConfig = {
-  // synchronize: false,
-  // migrations: ['migrations/*.js'],
-  // cli: {
-  //   migrationsDir: 'migrations',
-  // },
-};
-
 switch (process.env.NODE_ENV) {
   case 'development':
     Object.assign(dbConfig, {
@@ -15,13 +7,6 @@ switch (process.env.NODE_ENV) {
       synchronize: true,
     });
     break;
-  // case 'test':
-  //   Object.assign(dbConfig, {
-  //     type: 'sqlite',
-  //     database: 'test.sqlite',
-  //     entities: ['**/*.entity.ts']
-  //   });
-  //   break;
   case 'production':
     Object.assign(dbConfig, {
       type: 'postgres',
