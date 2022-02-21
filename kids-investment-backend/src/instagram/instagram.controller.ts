@@ -11,4 +11,9 @@ export class InstagramController {
   getSubscriberCount() {
     return this.instagramService.getSubscriberCount();
   }
+
+  @Get('/fetch')
+  fetchData() {
+    return this.instagramService.fetchLatestInfo();
+  }
 }

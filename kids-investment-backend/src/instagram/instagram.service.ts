@@ -1,28 +1,40 @@
 import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { AxiosResponse } from 'axios';
-import { Interface } from 'readline';
-import { Observable, lastValueFrom, map } from 'rxjs';
+import { lastValueFrom, map } from 'rxjs';
 import { Repository } from 'typeorm';
-import { FollowerCount } from './followers.entity';
+import { IGFollowerCount, IGPost } from './instagram.entity';
 import { IGResponse } from './interfaces/instagram.interface';
 
 @Injectable()
 export class InstagramService {
   constructor(
     private httpService: HttpService,
-    @InjectRepository(FollowerCount)
-    private repo: Repository<FollowerCount>,
+    @InjectRepository(IGFollowerCount)
+    private igFlowerCountrepo: Repository<IGFollowerCount>,
+    @InjectRepository(IGPost)
+    private igPost: Repository<IGPost>,
   ) {}
 
   async getSubscriberCount(): Promise<number> {
-    // const observable = this.httpService
-    //   .get('https://www.instagram.com/kids_investment_/channel/?__a=1')
-    //   .pipe(map((res) => res.data));
-    // const data: Promise<IGResponse> = lastValueFrom(observable);
-    // return (await data).graphql.user.edge_followed_by.count;
-    const record = await this.repo.findOne({order: {updated_at: "DESC"}})
-    return record.count
+    const record = await this.igFlowerCountrepo.findOne({
+      order: { updated_at: 'DESC' },
+    });
+    return record.count;
+  }
+
+  async fetchLatestInfo(): Promise<void> {
+    const observable = this.httpService
+      .get('https://www.instagram.com/kids_investment_/channel/?__a=1')
+      .pipe(map((res) => res.data));
+    const data: Promise<IGResponse> = lastValueFrom(observable);
+    const graphqlData = (await data).graphql;
+    const subscriberCount = graphqlData.user.edge_followed_by.count;
+    this.igFlowerCountrepo.save({ count: subscriberCount, updated_at: new Date() });
+    const posts = graphqlData.user.edge_owner_to_timeline_media.edges.map((node) => ({
+      ...node.node,
+      taken_at_timestamp: new Date(node.node.taken_at_timestamp),
+    }));
+    this.igPost.save(posts);
   }
 }
