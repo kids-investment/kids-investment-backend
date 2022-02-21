@@ -22,8 +22,7 @@ export class SocialsController {
   @Get('/subscribers')
   async listAll() {
     return {
-      instagram: 123,
-      // instagram: this.instagramService.getSubscriberCount(),
+      instagram: this.instagramService.getSubscriberCount(),
       youtube: await this.youtubeService.getSubscriberCount(),
       telegram: (await this.telegramService.listSubscriberCount()).map(
         (channel) => ({

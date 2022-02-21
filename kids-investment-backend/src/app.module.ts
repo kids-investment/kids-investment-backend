@@ -4,7 +4,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { MembersModule } from './members/members.module';
 import { YoutubeModule } from './youtube/youtube.module';
 import { SocialsModule } from './socials/socials.module';
-import { Member } from './members/member.entity';
 
 @Module({
   imports: [
