@@ -1,0 +1,7 @@
+# https://cloud.google.com/appengine/docs/standard/nodejs/reference/dispatch-yaml
+dispatch:
+  - url: "*/api/*"
+    service: api-backend
+
+  # - url: "*/*"
+  #   service: ssr-frontend
