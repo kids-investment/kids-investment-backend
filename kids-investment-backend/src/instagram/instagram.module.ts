@@ -2,9 +2,11 @@ import { HttpModule } from '@nestjs/axios';
 import { Module } from '@nestjs/common';
 import { InstagramService } from './instagram.service';
 import { InstagramController } from './instagram.controller';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { FollowerCount } from './followers.entity';
 
 @Module({
-  imports: [HttpModule],
+  imports: [TypeOrmModule.forFeature([FollowerCount]), HttpModule],
   providers: [InstagramService],
   exports: [InstagramService],
   controllers: [InstagramController],
