@@ -3,10 +3,10 @@ import { Module } from '@nestjs/common';
 import { InstagramService } from './instagram.service';
 import { InstagramController } from './instagram.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { FollowerCount } from './followers.entity';
+import { IGFollowerCount, IGPost } from './instagram.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([FollowerCount]), HttpModule],
+  imports: [TypeOrmModule.forFeature([IGFollowerCount, IGPost]), HttpModule],
   providers: [InstagramService],
   exports: [InstagramService],
   controllers: [InstagramController],
