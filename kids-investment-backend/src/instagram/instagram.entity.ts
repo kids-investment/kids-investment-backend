@@ -24,6 +24,9 @@ export class IGPost {
   @Column()
   thumbnail_src: string;
 
+  @Column()
+  page_count: number;
+
   @Index()
   @Column()
   taken_at_timestamp: Date;

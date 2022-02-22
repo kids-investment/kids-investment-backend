@@ -30,11 +30,17 @@ export class InstagramService {
     const data: Promise<IGResponse> = lastValueFrom(observable);
     const graphqlData = (await data).graphql;
     const subscriberCount = graphqlData.user.edge_followed_by.count;
-    this.igFlowerCountrepo.save({ count: subscriberCount, updated_at: new Date() });
-    const posts = graphqlData.user.edge_owner_to_timeline_media.edges.map((node) => ({
-      ...node.node,
-      taken_at_timestamp: new Date(node.node.taken_at_timestamp),
-    }));
+    this.igFlowerCountrepo.save({
+      count: subscriberCount,
+      updated_at: new Date(),
+    });
+    const posts = graphqlData.user.edge_owner_to_timeline_media.edges.map(
+      (node) => ({
+        ...node.node,
+        taken_at_timestamp: new Date(node.node.taken_at_timestamp * 1000),
+        page_count: node.node.edge_sidecar_to_children.edges.length,
+      }),
+    );
     this.igPost.save(posts);
   }
 }

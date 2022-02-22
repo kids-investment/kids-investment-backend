@@ -12,11 +12,14 @@ switch (process.env.NODE_ENV) {
   case 'production':
     dbConfig = {
       type: 'postgres',
-      //host: '/cloudsql/Instance connection name', //For google cloud-sql
+      host: '/cloudsql/kids-investment:asia-east1:kids-investment',
+      extra: {
+        socketPath: '/cloudsql/kids-investment:asia-east1:kids-investment',
+      },
       port: 5432,
-      username: 'postgres',
-      password: 'postgres',
-      database: 'kids_investment',
+      username: process.env.DB_USER,
+      password: process.env.DB_PASSWORD,
+      database: 'web_backend',
       entities: ['**/*.entity.js'],
       synchronize: false //DO NOT SET TO TRUE IN PRODUCTION DB!
     };

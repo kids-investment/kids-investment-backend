@@ -3,7 +3,8 @@ runtime: nodejs16
 instance_class: F2
 
 env_variables:
-  BUCKET_NAME: "example-gcs-bucket"
+  DB_USER: $USER
+  DB_BACKEND: $PASSWORD
 
 handlers:
 - url: /.*
