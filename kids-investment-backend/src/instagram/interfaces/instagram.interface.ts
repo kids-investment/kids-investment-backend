@@ -9,6 +9,7 @@ export interface IGResponse {
             shortcode: string;
             thumbnail_src: string;
             taken_at_timestamp: number;
+            edge_sidecar_to_children: { edges: {}[] };
           };
         }[];
       };

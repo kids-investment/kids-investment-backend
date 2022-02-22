@@ -1,0 +1,6 @@
+cron:
+- description: "daily Instagram fetch"
+  url: /mail/weekly
+  target: api-backend
+  schedule: every 24 hours
+  timezone: Asia/Taipei
