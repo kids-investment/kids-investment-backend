@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { MembersModule } from './members/members.module';
 import { YoutubeModule } from './youtube/youtube.module';
 import { SocialsModule } from './socials/socials.module';
+import { ApplepodcastModule } from './applepodcast/applepodcast.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { SocialsModule } from './socials/socials.module';
     TypeOrmModule.forRoot(),
     MembersModule,
     YoutubeModule,
+    ApplepodcastModule,
     SocialsModule,
   ],
   controllers: [],

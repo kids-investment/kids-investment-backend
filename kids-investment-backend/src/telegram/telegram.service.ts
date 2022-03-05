@@ -38,6 +38,7 @@ export class TelegramService {
       title,
       description,
       subscribers,
+      url
     };
   }
 }
