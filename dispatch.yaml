@@ -2,6 +2,3 @@
 dispatch:
   - url: "*/api/*"
     service: api-backend
-
-  # - url: "*/*"
-  #   service: ssr-frontend
