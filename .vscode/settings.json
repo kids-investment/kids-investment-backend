@@ -1,0 +1,11 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "backend",
+            "database": "${workspaceFolder:kids-investment-backend}/kids-investment-backend/db.sqlite"
+        }
+    ],
+    "sqltools.useNodeRuntime": true
+}
